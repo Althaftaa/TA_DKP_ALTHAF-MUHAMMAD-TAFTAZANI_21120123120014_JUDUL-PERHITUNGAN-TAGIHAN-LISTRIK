@@ -21,10 +21,10 @@ class TagihanListrik:
         self.jumlah_entry = tk.Entry(self.root)
         self.jumlah_entry.pack()
 
-        self.submit_button = tk.Button(self.root, text="Submit", command=self.Masukan_input)
+        self.submit_button = tk.Button(self.root, text="Submit", command=self.Kolom_input)
         self.submit_button.pack()
 
-    def Masukan_input(self):
+    def Kolom_input(self):
         try:
             self.tarif_per_kwh = float(self.tarif_entry.get())
             jumlah_alat = int(self.jumlah_entry.get())
