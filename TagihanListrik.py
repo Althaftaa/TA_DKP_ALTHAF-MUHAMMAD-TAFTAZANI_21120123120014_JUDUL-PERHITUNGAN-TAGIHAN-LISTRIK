@@ -1,9 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
 
-# Definisikan tarif per kWh dalam Rupiah
-TARIF_PER_KWH = 1500  # Tarif ini bisa disesuaikan sesuai tarif listrik yang berlaku
-
 class TagihanListrik:
     def __init__(self, root):
         self.root = root
@@ -14,6 +11,11 @@ class TagihanListrik:
         self.Alat_Elektronik()
 
     def Alat_Elektronik(self):
+        self.tarif_label = tk.Label(self.root, text="Tarif per kWh (Rp):")
+        self.tarif_label.pack()
+        self.tarif_entry = tk.Entry(self.root)
+        self.tarif_entry.pack()        
+
         self.jumlah_label = tk.Label(self.root, text="Jumlah alat elektronik (1-50):")
         self.jumlah_label.pack()
         self.jumlah_entry = tk.Entry(self.root)
@@ -24,6 +26,7 @@ class TagihanListrik:
 
     def Masukan_input(self):
         try:
+            self.tarif_per_kwh = float(self.tarif_entry.get())
             jumlah_alat = int(self.jumlah_entry.get())
             if jumlah_alat < 1 or jumlah_alat > 50:
                 raise ValueError("Jumlah alat harus antara 1 hingga 50.")
@@ -79,7 +82,7 @@ class TagihanListrik:
     def hitung_tagihan_listrik(self, watt, jam_per_hari, hari_per_bulan):
         kwh_per_hari = (watt * jam_per_hari) / 1000  # Mengonversi watt-jam ke kWh
         kwh_per_bulan = kwh_per_hari * hari_per_bulan
-        biaya_per_bulan = kwh_per_bulan * TARIF_PER_KWH
+        biaya_per_bulan = kwh_per_bulan * self.tarif_per_kwh
         return biaya_per_bulan
 
 if __name__ == "__main__":
