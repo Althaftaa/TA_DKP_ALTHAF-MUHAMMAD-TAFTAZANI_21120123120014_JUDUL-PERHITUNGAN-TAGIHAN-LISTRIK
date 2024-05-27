@@ -6,23 +6,25 @@ class TagihanListrik:
         self.root = root
         self.root.title("Perhitungan Tagihan Listrik")
 
+        self.root.geometry("650x690")
+        self.root.configure(bg='lightblue')
         self.entries = []
 
         self.Alat_Elektronik()
 
     def Alat_Elektronik(self):
-        self.tarif_label = tk.Label(self.root, text="Tarif per kWh (Rp):")
-        self.tarif_label.pack()
+        self.tarif_label = tk.Label(self.root, text="Tarif per kWh (Rp):",bg='lightblue')
+        self.tarif_label.pack(pady=(20, 5))
         self.tarif_entry = tk.Entry(self.root)
-        self.tarif_entry.pack()        
+        self.tarif_entry.pack(pady=5)        
 
-        self.jumlah_label = tk.Label(self.root, text="Jumlah alat elektronik (1-50):")
-        self.jumlah_label.pack()
+        self.jumlah_label = tk.Label(self.root, text="Jumlah alat elektronik (1-50):",bg='lightblue')
+        self.jumlah_label.pack(pady=5)
         self.jumlah_entry = tk.Entry(self.root)
-        self.jumlah_entry.pack()
+        self.jumlah_entry.pack(pady=5)
 
         self.submit_button = tk.Button(self.root, text="Submit", command=self.Kolom_input)
-        self.submit_button.pack()
+        self.submit_button.pack(pady=(5, 20))
 
     def Kolom_input(self):
         try:
@@ -37,28 +39,28 @@ class TagihanListrik:
                     widget.destroy()
 
             for i in range(jumlah_alat):
-                frame = tk.Frame(self.root)
-                frame.pack()
+                frame = tk.Frame(self.root, bg='lightblue')
+                frame.pack(pady=5)
 
-                watt_label = tk.Label(frame, text=f"Alat {i+1} - Watt:")
-                watt_label.pack(side=tk.LEFT)
+                watt_label = tk.Label(frame, text=f"Alat {i+1} - Watt:", bg='lightblue')
+                watt_label.pack(side=tk.LEFT, padx=5)
                 watt_entry = tk.Entry(frame)
-                watt_entry.pack(side=tk.LEFT)
+                watt_entry.pack(side=tk.LEFT, padx=5)
 
-                jam_label = tk.Label(frame, text=" Jam/hari:")
-                jam_label.pack(side=tk.LEFT)
+                jam_label = tk.Label(frame, text=" Jam/hari:", bg='lightblue')
+                jam_label.pack(side=tk.LEFT, padx=5)
                 jam_entry = tk.Entry(frame)
-                jam_entry.pack(side=tk.LEFT)
+                jam_entry.pack(side=tk.LEFT, padx=5)
 
-                hari_label = tk.Label(frame, text=" Hari/bulan:")
-                hari_label.pack(side=tk.LEFT)
+                hari_label = tk.Label(frame, text=" Hari/bulan:", bg='lightblue')
+                hari_label.pack(side=tk.LEFT, padx=5)
                 hari_entry = tk.Entry(frame)
-                hari_entry.pack(side=tk.LEFT)
+                hari_entry.pack(side=tk.LEFT, padx=5)
 
                 self.entries.append((watt_entry, jam_entry, hari_entry))
 
             self.calculate_button = tk.Button(self.root, text="Hitung Tagihan", command=self.hitung_total)
-            self.calculate_button.pack()
+            self.calculate_button.pack(pady=(20, 20))
 
         except ValueError as e:
             messagebox.showerror("Error", str(e))
